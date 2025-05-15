@@ -1,0 +1,18 @@
+{
+	"name": "DS_outbound",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ls_storage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "outbound"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

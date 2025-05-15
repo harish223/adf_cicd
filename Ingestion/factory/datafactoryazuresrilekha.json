@@ -1,0 +1,9 @@
+{
+	"name": "datafactoryazuresrilekha",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "20c0feec-9917-477a-a5d1-7a48cab7c7e3",
+		"tenantId": "bd641bf5-db88-495d-9022-037e1b865f54"
+	}
+}
