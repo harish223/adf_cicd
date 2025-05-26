@@ -45,6 +45,17 @@ display(df)
 
 # CELL ********************
 
+# Adding this comment
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 spark.sql("""
     CREATE TABLE IF NOT EXISTS silver_customers (
     customer_id STRING,
