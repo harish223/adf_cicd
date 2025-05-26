@@ -1,0 +1,197 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "formatSettings": {
+              "type": "DelimitedTextReadSettings",
+              "skipLineCount": 0
+            },
+            "storeSettings": {
+              "type": "AzureBlobFSReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            },
+            "datasetSettings": {
+              "type": "DelimitedText",
+              "typeProperties": {
+                "location": {
+                  "type": "AzureBlobFSLocation",
+                  "fileSystem": "landing",
+                  "fileName": "customer.csv"
+                },
+                "columnDelimiter": ",",
+                "quoteChar": "\"",
+                "escapeChar": "\\",
+                "firstRowAsHeader": true
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "bd511e02-5c5f-4ad8-bea8-0a6b2ddae8b6"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "OverwriteSchema",
+            "partitionOption": "None",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "table": "customer"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "BronzeLayer",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "3ce3bf47-937b-aa83-44bf-4cc9f0712cb4",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "customer_id",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "customer_id",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "name",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "name",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "email",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "email",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "country",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "country",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "customer_type",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "customer_type",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "registration_date",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "registration_date",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "age",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "age",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "gender",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "gender",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "total_purchases",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "total_purchases",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "ingestion_timestamp",
+                  "type": "String",
+                  "physicalType": "String"
+                },
+                "sink": {
+                  "name": "ingestion_timestamp",
+                  "physicalType": "string"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "CopyCustomersData",
+        "dependsOn": []
+      }
+    ]
+  }
+}
