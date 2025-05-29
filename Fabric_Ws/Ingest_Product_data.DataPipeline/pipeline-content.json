@@ -1,0 +1,177 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "AzureBlobFSReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            },
+            "datasetSettings": {
+              "type": "Json",
+              "typeProperties": {
+                "location": {
+                  "type": "AzureBlobFSLocation",
+                  "fileSystem": "landing",
+                  "fileName": "product.json"
+                }
+              },
+              "schema": {},
+              "externalReferences": {
+                "connection": "bd511e02-5c5f-4ad8-bea8-0a6b2ddae8b6"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "OverwriteSchema",
+            "partitionOption": "None",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "table": "product"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "BronzeLayer",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "3ce3bf47-937b-aa83-44bf-4cc9f0712cb4",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "product_id",
+                  "type": "Int64"
+                },
+                "sink": {
+                  "name": "product_id",
+                  "physicalType": "long"
+                }
+              },
+              {
+                "source": {
+                  "name": "name",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "name",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "category",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "category",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "brand",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "brand",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "price",
+                  "type": "Double"
+                },
+                "sink": {
+                  "name": "price",
+                  "physicalType": "double"
+                }
+              },
+              {
+                "source": {
+                  "name": "stock_quantity",
+                  "type": "Int64"
+                },
+                "sink": {
+                  "name": "stock_quantity",
+                  "physicalType": "long"
+                }
+              },
+              {
+                "source": {
+                  "name": "rating",
+                  "type": "Double"
+                },
+                "sink": {
+                  "name": "rating",
+                  "physicalType": "double"
+                }
+              },
+              {
+                "source": {
+                  "name": "is_active",
+                  "type": "Boolean"
+                },
+                "sink": {
+                  "name": "is_active",
+                  "physicalType": "boolean"
+                }
+              },
+              {
+                "source": {
+                  "name": "ingestion_timestamp",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "ingestion_timestamp",
+                  "physicalType": "string"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            },
+            "columnFlattenSettings": {
+              "treatArrayAsString": false,
+              "treatStructAsString": false,
+              "flattenColumnDelimiter": "."
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "CopyProductData",
+        "dependsOn": []
+      }
+    ]
+  }
+}
