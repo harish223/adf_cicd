@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Lakehouse",
-    "displayName": "project_Harilakehouse"
+    "type": "DataPipeline",
+    "displayName": "pl_stg_processing_nyctaxi"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "b11bac1e-00d7-8545-43d2-0cbb28e7b3b1"
+    "logicalId": "df1108fa-9aee-adcc-4c59-685000b1bd22"
   }
 }
